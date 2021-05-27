@@ -1,0 +1,174 @@
+<div class="mt-5">
+    <div class="row mt-5 mb-5 text-center justify-content-center">
+      <div class="container mt-5">
+        <div class="row justify-content-center text-center align-items-center">
+          <div class="col-md-6 ">
+            <h1>Bem-vindo(a) Produtor(a)</h1>
+            <h3>Aqui você cria, edita e deleta seus Produtos</h3>
+          </div>
+          <div class="col-md-6">
+  
+            <img class="img-fluid" src="https://i.imgur.com/kL1eOUb.png" alt="">
+  
+          </div>
+        </div>
+        <!--MENU-->
+        <div class="container" id="postagens">
+          <!--NAV-->
+          <nav>
+            <ul class="nav nav-tabs justify-content-center text-center d-flex" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="todos" data-toggle="tab" href="#todosProdutos" role="tab"
+                  aria-controls="nav-todas-tab" aria-selected="true">Categorias</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="produtos" data-toggle="tab" href="#Produtos" role="tab"
+                  aria-controls="nav-categoriaProdutos-tab" aria-selected="false" (click)='findByIdUsuario()'>Seus
+                  Produtos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="cadastro" data-toggle="tab" href="#Cadastrar" role="tab"
+                  aria-controls="nav-criar-tab" aria-selected="false">Cadastrar Produtos</a>
+              </li>
+            </ul>
+          </nav>
+          <!--/NAV-->
+          <div class="tab-content texto" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="todosProdutos" role="tabpanel"
+              aria-labelledby="nav-todasPostagens-tab">
+              <!--LISTA CATEGORIAS-->
+  
+              <!--BARRA PESQUISA-->
+              <div class="row d-flex justify-content-center mt-5 mb-5">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="categoria"
+                      placeholder="Digite nome de categoria para pesquisar" [(ngModel)]='nomeCategoria'
+                      (keyup)='findByNomeCategoria()'>
+                  </div>
+                </div>
+              </div>
+              <!--/BARRA PESQUISA-->
+  
+              <div class="card-columns">
+                <div *ngFor='let categ of listaCategoria'>
+                  <div class="card text-center m-2" *ngFor='let prod of categ.produtos'>
+                    <div class="card-body">
+                      <div><img src='{{prod.imagem}}' width="70" height="100"></div>
+                      <h5 class="card-title m-0">{{prod.nome}}</h5>
+                      <p class="card-text mt-3">{{prod.descricao}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/LISTA CATEGORIAS-->
+            </div>
+  
+            <div class="tab-pane fade" id="Produtos" role="tabpanel">
+              <!--LISTA PRODUTO DO PRODUTOR-->
+  
+              <!--BARRA PESQUISA-->
+              <div class="row d-flex justify-content-center mt-5 mb-5">
+                <div class="col-md-4">
+  
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="nome" placeholder="Digite nome de produto para pesquisar"
+                      [(ngModel)]='nomeProduto' (keyup)='findByNomeProduto()'>
+                  </div>
+  
+                </div>
+  
+              </div>
+              <!--/BARRA PESQUISA-->
+  
+              <div class="card-columns">
+                <div class="card text-center m-2" *ngFor='let item of listaProduto | orderBy: key: reverse'>
+                  <div class="card-body">
+                    <div class="display-inline"><img src='{{item.imagem}}' width="70" height="100"></div>
+                    <h5 class="card-title m-0">{{item.nome}}</h5>
+                    <h3 class="card-title m-0">{{categoria.nome}}</h3>
+                    <p class="card-text mt-3">{{item.descricao}}</p>
+  
+                    <a class="text-info mr-3" [routerLink]="['/editar-produto', item.id]">Editar</a>
+                    <a class="text-danger" [routerLink]="['/delete-produto', item.id]">Apagar</a>
+                  </div>
+                </div>
+              </div>
+              <!--/LISTA PRODUTO DO PRODUTOR-->
+            </div>
+  
+            <div class="tab-pane fade d-flex justify-content-center" id="Cadastrar" role="tabpanel"
+              aria-labelledby="nav-cadastro-tab">
+              <!--FORMULARIO-->
+  
+              <div class="col-md-6">
+                <!--aqui e o formulario-->
+                <div id="formExemplo" data-toggle="validator" role="form">
+                  <div class="form-group">
+                    <label for="textNome" class="control-label">Nome</label>
+                    <input [(ngModel)]='produto.nome' id="textNome" class="form-control" placeholder="Nome do Produto"
+                      type="text" required>
+                  </div>
+                  <div class="form-group">
+                    <!--CATEGORIAS-->
+                    <label for="exampleFormControlSelect1">Categoria</label>
+                    <select class="form-control" id="categoria" name="categoria" [(ngModel)]='idCategoria'
+                      (change)='findByIdCategoria()'>
+                      <option *ngFor='let item of listaCategoria' value="{{item.id}}">{{item.nome}}</option>
+                      <!--/CATEGORIAS-->
+                    </select>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="textQuantidade" class="control-label">Quantidade</label>
+  
+                    <input [(ngModel)]='produto.quantidade' id="textQuantidade" class="form-control"
+                      placeholder="Digite a Quantidade" type="number" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="textPeso" class="control-label">Peso</label>
+                    <input [(ngModel)]='produto.peso' id="textPeso" class="form-control" placeholder="Digite o Peso"
+                      type="number" required>
+  
+                  </div>
+                  <div class="form-group">
+                    <label for="textPreço" class="control-label">Preço</label>
+                    <input [(ngModel)]='produto.preco' id="textPreço" class="form-control" placeholder="Digite o Preço"
+                      type="number" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="textLink" class="control-label">Link</label>
+                    <input [(ngModel)]='produto.imagem' id="textLink" class="form-control"
+                      placeholder="Cole o link da imagem aqui" type="text" required>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="textLink" class="control-label">Descrição</label>
+                    <input [(ngModel)]='produto.descricao' id="textLink" class="form-control"
+                      placeholder="Descrição produto" type="text" required>
+                  </div>
+  
+                  <div class="d-flex justify-content-center mb-5 mt-5">
+                    <!--Botao Cancelar-->
+                    <button type="submit" class="btn btn-outline-danger mr-4" routerLink="/login">
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                      Cancelar</button>
+                    <!--/Botao cancelar-->
+  
+                    <!--Botao cadastrar-->
+                    <button type="submit" class="btn btn-outline-success ml-4" (click)='postarProduto()'>
+  
+                      <i class="fa fa-check" aria-hidden="true"></i> Cadastrar</button>
+                    <!--/Botao cadastrar-->
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+          <!--/CARD-->
+        </div>
+      </div>
+    </div>
+  </div>
+  

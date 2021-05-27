@@ -1,0 +1,88 @@
+<!--container-->
+<div class="container-fluid menu justify-content-center m-auto mt-5">
+    <!--Margens do top e botton-->
+    <div class="row d-flex mt-5 mb-5">
+
+        <div class="col-md-3 justify-content-center mt-5"></div>
+        <!--bloco cadastro-->
+        <div class="col-md-6  justify-content-center mt-5">
+            <div class="row d-flex justify-content-center mt-5">
+                <div class="col-md-6 justify-content-center   shadownLogin">
+                    <!--DIV PARA LOGO-->
+                    <div class="text-center">
+                        <img src="https://i.imgur.com/CCSQaiP.png" alt="logo" width="" height="">
+                    </div>
+                    <!--/DIV PARA LOGO-->
+
+                    <!--Div nome Completo-->
+                    <div class="form-group colorFont">
+                        <label for="nome">Nome completo</label>
+                        <input [(ngModel)]='usuario.nome' class="form-control" type="text" name="nome" id="nome"
+                            placeholder="Informe seu nome completo">
+                    </div>
+                    <!--/Div nome Completo-->
+
+                    <!--Email-->
+                    <div class="form-group colorFont mb-3">
+                        <label for="email">E-mail</label>
+                        <input [(ngModel)]='usuario.usuario' class="form-control" type="email" name="email" id="email"
+                            placeholder="Informe seu melhor e-mail">
+
+                    </div>
+                    <!--/Email-->
+
+                    <!--Senha-->
+                    <div class="form-group colorFont mb-3">
+                        <label for="senha">Senha</label>
+                        <input (input)='confirmSenha($event)' class="form-control" type="password" name="senha"
+                            id="senha" placeholder="Senha para acesso">
+                    </div>
+                    <!--/Senha-->
+
+                    <!--Confirma senha-->
+                    <div class="form-group colorFont mb-3">
+                        <label for="confirmarSenha">Confirmar Senha</label>
+                        <input [(ngModel)]='usuario.senha' class="form-control" type="password" name="confirmarSenha"
+                            id="confirmarSenha" placeholder="Confirme sua senha">
+                    </div>
+                    <!--/Confirma senha-->
+
+                    <div class="form-group colorFont mb-3">
+                        <label for="tipo">Tipo de Usuario</label>
+                        <select class=" form-control" name="tipo" id="tipo" (change)='tipoUser($event)'>
+                            <option>Selecione o tipo de usuario:</option>
+                            <option value="produtor">Produtor</option>
+                            <option value="cliente">Cliente</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </div>
+
+                    <!--Botoes-->
+                    <div class="d-flex justify-content-center mb-5 mt-5">
+                        <!--Botao Cancelar-->
+                        <button type="submit" class="btn btn-outline-danger mr-4" routerLink="/inicio">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                            Cancelar</button>
+                        <!--/Botao cancelar-->
+
+                        <!--Botao cadastrar-->
+                        <button type="submit" class="btn btn-outline-success ml-4" (click)='cadastrar()'>
+                            <i class="fa fa-check" aria-hidden="true"></i> Cadastrar</button>
+
+                        <!--/Botao cadastrar-->
+                    </div>
+                    <!--/Botoes-->
+                    <hr>
+                    <p class="text-center">Já possuí uma conta? <a routerLink='/login'>Entrar</a></p>
+                </div>
+            </div>
+            <!--</div>-->
+            <div class="col-md-3 mb-5"></div>
+        </div>
+        <!--/bloco cadastro-->
+    </div>
+    <!--/Margens do top e botton-->
+</div>
+<!--/container-->
+
+

@@ -1,0 +1,54 @@
+<div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center mt-5">Atualizar Produto</h1>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+       <div class="col-md-6">
+      <div class="form-group justify-content-center text-center">
+  
+        <div class="form-group">
+          <label for="nome" class="control-label">Nome</label>
+          <input [(ngModel)]='produto.nome' id="nome" class="form-control" placeholder="Nome do Produto" type="text">
+          <!-- required -->
+        </div>
+  
+        <div class="form-group">
+          <label for="quantidade" class="control-label">Quantidade</label>
+          <input [(ngModel)]='produto.quantidade' id="quantidade" class="form-control" placeholder="Digite a Quantidade"
+            type="number"> <!-- required -->
+        </div>
+  
+        <div class="form-group">
+          <label for="peso" class="control-label">Peso</label>
+          <input [(ngModel)]='produto.peso' id="peso" class="form-control" placeholder="Digite o Peso" type="number">
+          <!-- required -->
+        </div>
+  
+        <div class="form-group">
+          <label for="preco" class="control-label">Preço</label>
+          <input [(ngModel)]='produto.preco' id="preco" class="form-control" placeholder="Digite o Preço" type="number">
+          <!-- required -->
+        </div>
+  
+        <div class="form-group">
+          <label for="imagem" class="control-label">Link</label>
+          <input [(ngModel)]='produto.imagem' id="imagem" class="form-control" placeholder="Cole o link da imagem aqui"
+            type="text"> <!-- required -->
+        </div>
+  
+        <div class="form-group">
+          <label for="descricao" class="control-label">Descrição</label>
+          <input [(ngModel)]='produto.descricao' id="descricao" class="form-control" placeholder="Descrição produto"
+            type="text"> <!-- required -->
+        </div>
+  
+      <button class="btn btn-danger mr-4" routerLink='/cadastro-produto'>Cancelar</button>
+      <button class="btn btn-success" (click)='atualiza()'>Atualizar</button>
+    </div>
+    </div>
+     </div>
+  
+  </div>
+  
